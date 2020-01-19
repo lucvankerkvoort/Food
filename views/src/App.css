@@ -5,6 +5,7 @@
 .home {
   display: flex;
   height: 100vh;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -16,32 +17,13 @@
   background: white;
   box-shadow: 2px 5px 12px black;
   flex-wrap: wrap;
-  border-radius: 75px;
+  z-index: 15;
 }
 
-.background-carousel {
-  position: absolute;
-  margin: auto;
-  z-index: -1;
+.emailAddresses {
+  z-index: 15;
 }
 
-.searchbar {
-  display: inline-flex;
-  border-top-left-radius: 25px;
-  border-bottom-left-radius: 25px;
-  padding: 5px;
-  box-shadow: 4px 4px 10px black;
-}
-.searchbar input {
-  text-align: center;
-  border: none;
-}
-.fa.fa-search {
-  border: none;
-  padding: 3px;
-}
-
-.search-results {
-  height: 50vh;
-  background: white;
+.emailAddresses::-webkit-scrollbar {
+  display: none;
 }

@@ -1,36 +1,48 @@
 import React from "react";
-import Header from "../Components/Header";
-import Searchbar from "../Components/Searchbar";
-import { background, mobileBackground } from "../Images";
-import BackgroundCarousel from "../Components/Carousel";
+import Form from "../Components/Form";
+import BackgroundSlideshow from "react-background-slideshow";
+import { background } from "../Images";
 
 class Home extends React.Component {
   state = {
-    isDesktop: false //This is where I am having problems
+    email: null
   };
 
-  componentDidMount() {
-    this.updatePredicate();
-    window.addEventListener("resize", this.updatePredicate);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.updatePredicate);
-  }
-
-  updatePredicate = () => {
-    this.setState({ isDesktop: window.innerWidth > 670 });
+  handleForm = input => {
+    const email = input.map(email => {
+      return <form>{email}</form>;
+    });
+    this.handleChange();
+    this.setState({ email: email });
   };
+
+  handleChange = () => {
+    const style = {
+      borderRadius: "10px",
+      height: "400px",
+      width: "300px",
+      margin: "50px",
+      padding: "15px",
+      overflowY: "scroll",
+      background: "rgba(255,255,255,0.5)",
+      boxShadow: "2px 2px 4px black"
+    };
+    this.setState({ style: style });
+  };
+
   render() {
-    const { isDesktop } = this.state;
     return (
       <div className="home">
-        <BackgroundCarousel
-          images={isDesktop ? background : mobileBackground}
-        />
+        <BackgroundSlideshow images={background} />
         <div className="search-section">
-          <Header title="Welcome" />
-          <Searchbar />
+          <h3>Welcome to the Party Catering website</h3>
+          <Form handleForm={this.handleForm} />
+        </div>
+        <div
+          className="emailAddresses"
+          style={this.state.style ? this.state.style : null}
+        >
+          {this.state.email}
         </div>
       </div>
     );
